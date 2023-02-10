@@ -2,7 +2,7 @@ import type { Model } from '../../../client/interfaces/Model';
 import type { ModelComposition } from '../../../client/interfaces/ModelComposition';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { escapeName } from './escapeName';
+import { escapeAndCamelizeName } from './escapeName';
 import type { getModel } from './getModel';
 import { getModelProperties } from './getModelProperties';
 import { getRequiredPropertiesFromComposition } from './getRequiredPropertiesFromComposition';
@@ -44,7 +44,7 @@ export const getModelComposition = (
     if (definition.required) {
         const requiredProperties = getRequiredPropertiesFromComposition(
             openApi,
-            definition.required.map(required => escapeName(required)),
+            definition.required.map(required => escapeAndCamelizeName(required)),
             definitions,
             getModel
         );

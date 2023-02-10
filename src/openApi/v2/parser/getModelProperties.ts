@@ -2,7 +2,7 @@ import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { escapeName } from './escapeName';
+import { escapeAndCamelizeName } from './escapeName';
 import type { getModel } from './getModel';
 import { getType } from './getType';
 
@@ -18,7 +18,7 @@ export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, 
             if (property.$ref) {
                 const model = getType(property.$ref);
                 models.push({
-                    name: escapeName(propertyName),
+                    name: escapeAndCamelizeName(propertyName),
                     export: 'reference',
                     type: model.type,
                     base: model.base,
@@ -51,7 +51,7 @@ export const getModelProperties = (openApi: OpenApi, definition: OpenApiSchema, 
             } else {
                 const model = getModel(openApi, property);
                 models.push({
-                    name: escapeName(propertyName),
+                    name: escapeAndCamelizeName(propertyName),
                     export: model.export,
                     type: model.type,
                     base: model.base,

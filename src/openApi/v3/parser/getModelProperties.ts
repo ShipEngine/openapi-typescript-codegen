@@ -3,7 +3,7 @@ import { findOneOfParentDiscriminator, mapPropertyValue } from '../../../utils/d
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
-import { escapeName } from './escapeName';
+import { escapeAndCamelizeName } from './escapeName';
 import type { getModel } from './getModel';
 import { getType } from './getType';
 
@@ -35,7 +35,7 @@ export const getModelProperties = (
                 | 'enums'
                 | 'properties'
             > = {
-                name: escapeName(propertyName),
+                name: escapeAndCamelizeName(propertyName),
                 description: property.description || null,
                 deprecated: property.deprecated === true,
                 isDefinition: false,
