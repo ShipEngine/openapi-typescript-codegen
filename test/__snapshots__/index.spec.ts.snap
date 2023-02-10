@@ -549,7 +549,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { _default as _defaultDto } from './models/_default';
+export type { _Default as _DefaultDto } from './models/_Default';
 export type { ArrayWithArray as ArrayWithArrayDto } from './models/ArrayWithArray';
 export type { ArrayWithBooleans as ArrayWithBooleansDto } from './models/ArrayWithBooleans';
 export type { ArrayWithNumbers as ArrayWithNumbersDto } from './models/ArrayWithNumbers';
@@ -598,7 +598,7 @@ export type { SimpleReference as SimpleReferenceDto } from './models/SimpleRefer
 export type { SimpleString as SimpleStringDto } from './models/SimpleString';
 export type { SimpleStringWithPattern as SimpleStringWithPatternDto } from './models/SimpleStringWithPattern';
 
-export { $_default } from './schemas/$_default';
+export { $_Default } from './schemas/$_Default';
 export { $ArrayWithArray } from './schemas/$ArrayWithArray';
 export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
 export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
@@ -666,12 +666,12 @@ export { TypesService } from './services/TypesService';
 "
 `;
 
-exports[`v2 should generate: ./test/generated/v2/models/_default.ts 1`] = `
+exports[`v2 should generate: ./test/generated/v2/models/_Default.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-export type _default = {
+export type _Default = {
     name?: string;
 };
 
@@ -1336,7 +1336,7 @@ export type ModelWithProperties = {
     number?: number;
     boolean?: boolean;
     reference?: ModelWithString;
-    'property with space'?: string;
+    propertyWithSpace?: string;
     default?: string;
     try?: string;
     readonly '@namespace.string'?: string;
@@ -1455,11 +1455,11 @@ export type SimpleStringWithPattern = string;
 "
 `;
 
-exports[`v2 should generate: ./test/generated/v2/schemas/$_default.ts 1`] = `
+exports[`v2 should generate: ./test/generated/v2/schemas/$_Default.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $_default = {
+export const $_Default = {
     properties: {
         name: {
             type: 'string',
@@ -2156,7 +2156,7 @@ export const $ModelWithProperties = {
         reference: {
             type: 'ModelWithString',
         },
-        'property with space': {
+        propertyWithSpace: {
             type: 'string',
         },
         default: {
@@ -3642,7 +3642,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { _default as _defaultDto } from './models/_default';
+export type { _Default as _DefaultDto } from './models/_Default';
 export type { ArrayWithArray as ArrayWithArrayDto } from './models/ArrayWithArray';
 export type { ArrayWithBooleans as ArrayWithBooleansDto } from './models/ArrayWithBooleans';
 export type { ArrayWithNumbers as ArrayWithNumbersDto } from './models/ArrayWithNumbers';
@@ -3711,7 +3711,7 @@ export type { SimpleReference as SimpleReferenceDto } from './models/SimpleRefer
 export type { SimpleString as SimpleStringDto } from './models/SimpleString';
 export type { SimpleStringWithPattern as SimpleStringWithPatternDto } from './models/SimpleStringWithPattern';
 
-export { $_default } from './schemas/$_default';
+export { $_Default } from './schemas/$_Default';
 export { $ArrayWithArray } from './schemas/$ArrayWithArray';
 export { $ArrayWithBooleans } from './schemas/$ArrayWithBooleans';
 export { $ArrayWithNumbers } from './schemas/$ArrayWithNumbers';
@@ -3804,12 +3804,12 @@ export { UploadService } from './services/UploadService';
 "
 `;
 
-exports[`v3 should generate: ./test/generated/v3/models/_default.ts 1`] = `
+exports[`v3 should generate: ./test/generated/v3/models/_Default.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
-export type _default = {
+export type _Default = {
     name?: string;
 };
 
@@ -4380,8 +4380,8 @@ exports[`v3 should generate: ./test/generated/v3/models/File.ts 1`] = `
 
 export type File = {
     readonly id?: string;
-    readonly updated_at?: string;
-    readonly created_at?: string;
+    readonly updatedAt?: string;
+    readonly createdAt?: string;
     mime: string;
     readonly file?: string;
 };
@@ -4808,7 +4808,7 @@ export type ModelWithProperties = {
     number?: number;
     boolean?: boolean;
     reference?: ModelWithString;
-    'property with space'?: string;
+    propertyWithSpace?: string;
     default?: string;
     try?: string;
     readonly '@namespace.string'?: string;
@@ -4941,11 +4941,11 @@ export type SimpleStringWithPattern = string | null;
 "
 `;
 
-exports[`v3 should generate: ./test/generated/v3/schemas/$_default.ts 1`] = `
+exports[`v3 should generate: ./test/generated/v3/schemas/$_Default.ts 1`] = `
 "/* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $_default = {
+export const $_Default = {
     properties: {
         name: {
             type: 'string',
@@ -5594,12 +5594,12 @@ export const $File = {
             isReadOnly: true,
             minLength: 1,
         },
-        updated_at: {
+        updatedAt: {
             type: 'string',
             isReadOnly: true,
             format: 'date-time',
         },
-        created_at: {
+        createdAt: {
             type: 'string',
             isReadOnly: true,
             format: 'date-time',
@@ -6119,7 +6119,7 @@ export const $ModelWithProperties = {
         reference: {
             type: 'ModelWithString',
         },
-        'property with space': {
+        propertyWithSpace: {
             type: 'string',
         },
         default: {

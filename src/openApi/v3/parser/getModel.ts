@@ -1,3 +1,5 @@
+import camelCase from 'camelcase';
+
 import type { Model } from '../../../client/interfaces/Model';
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
@@ -15,8 +17,10 @@ export const getModel = (
     isDefinition: boolean = false,
     name: string = ''
 ): Model => {
+    const prefix = name[0] === '_' ? '_' : '';
+
     const model: Model = {
-        name,
+        name: `${prefix}${camelCase(name, { pascalCase: true })}`,
         export: 'interface',
         type: 'any',
         base: 'any',
