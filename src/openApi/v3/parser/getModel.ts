@@ -55,7 +55,7 @@ export const getModel = (
         model.type = definitionRef.type;
         model.base = definitionRef.base;
         model.template = definitionRef.template;
-        model.imports.push(...definitionRef.imports.map(x => camelCaseName(x, { pascalCase: true })));
+        model.imports.push(...definitionRef.imports);
         model.default = getModelDefault(definition, model);
         return model;
     }
@@ -80,7 +80,7 @@ export const getModel = (
             model.type = arrayItems.type;
             model.base = arrayItems.base;
             model.template = arrayItems.template;
-            model.imports.push(...arrayItems.imports.map(x => camelCaseName(x, { pascalCase: true })));
+            model.imports.push(...arrayItems.imports);
             model.default = getModelDefault(definition, model);
             return model;
         } else {
@@ -90,7 +90,7 @@ export const getModel = (
             model.base = arrayItems.base;
             model.template = arrayItems.template;
             model.link = arrayItems;
-            model.imports.push(...arrayItems.imports.map(x => camelCaseName(x, { pascalCase: true })));
+            model.imports.push(...arrayItems.imports);
             model.default = getModelDefault(definition, model);
             return model;
         }
@@ -107,7 +107,7 @@ export const getModel = (
             model.type = additionalProperties.type;
             model.base = additionalProperties.base;
             model.template = additionalProperties.template;
-            model.imports.push(...additionalProperties.imports.map(x => camelCaseName(x, { pascalCase: true })));
+            model.imports.push(...additionalProperties.imports);
             model.default = getModelDefault(definition, model);
             return model;
         } else {
@@ -117,7 +117,7 @@ export const getModel = (
             model.base = additionalProperties.base;
             model.template = additionalProperties.template;
             model.link = additionalProperties;
-            model.imports.push(...additionalProperties.imports.map(x => camelCaseName(x, { pascalCase: true })));
+            model.imports.push(...additionalProperties.imports);
             model.default = getModelDefault(definition, model);
             return model;
         }
@@ -126,7 +126,7 @@ export const getModel = (
     if (definition.oneOf?.length) {
         const composition = getModelComposition(openApi, definition, definition.oneOf, 'one-of', getModel);
         model.export = composition.type;
-        model.imports.push(...composition.imports.map(x => camelCaseName(x, { pascalCase: true })));
+        model.imports.push(...composition.imports);
         model.properties.push(...composition.properties);
         model.enums.push(...composition.enums);
         return model;
@@ -135,7 +135,7 @@ export const getModel = (
     if (definition.anyOf?.length) {
         const composition = getModelComposition(openApi, definition, definition.anyOf, 'any-of', getModel);
         model.export = composition.type;
-        model.imports.push(...composition.imports.map(x => camelCaseName(x, { pascalCase: true })));
+        model.imports.push(...composition.imports);
         model.properties.push(...composition.properties);
         model.enums.push(...composition.enums);
         return model;
@@ -144,7 +144,7 @@ export const getModel = (
     if (definition.allOf?.length) {
         const composition = getModelComposition(openApi, definition, definition.allOf, 'all-of', getModel);
         model.export = composition.type;
-        model.imports.push(...composition.imports.map(x => camelCaseName(x, { pascalCase: true })));
+        model.imports.push(...composition.imports);
         model.properties.push(...composition.properties);
         model.enums.push(...composition.enums);
         return model;
@@ -159,7 +159,7 @@ export const getModel = (
 
             const modelProperties = getModelProperties(openApi, definition, getModel, model);
             modelProperties.forEach(modelProperty => {
-                model.imports.push(...modelProperty.imports.map(x => camelCaseName(x, { pascalCase: true })));
+                model.imports.push(...modelProperty.imports);
                 model.enums.push(...modelProperty.enums);
                 model.properties.push(modelProperty);
                 if (modelProperty.export === 'enum') {
@@ -174,7 +174,7 @@ export const getModel = (
             model.base = additionalProperties.base;
             model.template = additionalProperties.template;
             model.link = additionalProperties;
-            model.imports.push(...additionalProperties.imports.map(x => camelCaseName(x, { pascalCase: true })));
+            model.imports.push(...additionalProperties.imports);
             model.default = getModelDefault(definition, model);
             return model;
         }
@@ -188,10 +188,12 @@ export const getModel = (
         model.base = definitionType.base;
         model.template = definitionType.template;
         model.isNullable = definitionType.isNullable || model.isNullable;
-        model.imports.push(...definitionType.imports.map(x => camelCaseName(x, { pascalCase: true })));
+        model.imports.push(...definitionType.imports);
         model.default = getModelDefault(definition, model);
         return model;
     }
+
+    model.imports = model.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return model;
 };

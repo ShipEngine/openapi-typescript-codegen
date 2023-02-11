@@ -1,4 +1,5 @@
 import type { Type } from '../../../client/interfaces/Type';
+import { camelCaseName } from './camelCaseName';
 import { getMappedType } from './getMappedType';
 import { stripNamespace } from './stripNamespace';
 
@@ -62,6 +63,8 @@ export const getType = (type: string = 'any', format?: string): Type => {
         result.imports.push(type);
         return result;
     }
+
+    result.imports = result.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return result;
 };

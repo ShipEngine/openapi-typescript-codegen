@@ -2,6 +2,7 @@ import type { Operation } from '../../../client/interfaces/Operation';
 import type { OperationParameters } from '../../../client/interfaces/OperationParameters';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiOperation } from '../interfaces/OpenApiOperation';
+import { camelCaseName } from './camelCaseName';
 import { getOperationErrors } from './getOperationErrors';
 import { getOperationName } from './getOperationName';
 import { getOperationParameters } from './getOperationParameters';
@@ -71,6 +72,7 @@ export const getOperation = (
     }
 
     operation.parameters = operation.parameters.sort(sortByRequired);
+    operation.imports = operation.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return operation;
 };

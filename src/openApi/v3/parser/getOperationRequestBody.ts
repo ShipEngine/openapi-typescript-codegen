@@ -2,6 +2,7 @@ import type { OperationParameter } from '../../../client/interfaces/OperationPar
 import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiRequestBody } from '../interfaces/OpenApiRequestBody';
+import { camelCaseName } from './camelCaseName';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
 import { getType } from './getType';
@@ -81,6 +82,8 @@ export const getOperationRequestBody = (openApi: OpenApi, body: OpenApiRequestBo
             }
         }
     }
+
+    requestBody.imports = requestBody.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return requestBody;
 };

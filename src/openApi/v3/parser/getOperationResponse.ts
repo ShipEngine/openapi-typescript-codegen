@@ -3,6 +3,7 @@ import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiResponse } from '../interfaces/OpenApiResponse';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { camelCaseName } from './camelCaseName';
 import { getContent } from './getContent';
 import { getModel } from './getModel';
 import { getRef } from './getRef';
@@ -93,6 +94,8 @@ export const getOperationResponse = (
             }
         }
     }
+
+    operationResponse.imports = operationResponse.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return operationResponse;
 };

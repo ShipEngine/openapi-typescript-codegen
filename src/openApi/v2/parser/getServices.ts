@@ -1,6 +1,7 @@
 import type { Service } from '../../../client/interfaces/Service';
 import { unique } from '../../../utils/unique';
 import type { OpenApi } from '../interfaces/OpenApi';
+import { camelCaseName } from './camelCaseName';
 import { getOperation } from './getOperation';
 import { getOperationParameters } from './getOperationParameters';
 
@@ -43,6 +44,7 @@ export const getServices = (openApi: OpenApi): Service[] => {
                                 // Push the operation in the service
                                 service.operations.push(operation);
                                 service.imports.push(...operation.imports);
+                                service.imports = service.imports.map(x => camelCaseName(x, { pascalCase: true }));
                                 services.set(operation.service, service);
                             });
                             break;
@@ -51,5 +53,6 @@ export const getServices = (openApi: OpenApi): Service[] => {
             }
         }
     }
+
     return Array.from(services.values());
 };

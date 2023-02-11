@@ -2,6 +2,7 @@ import type { Model } from '../../../client/interfaces/Model';
 import type { ModelComposition } from '../../../client/interfaces/ModelComposition';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { camelCaseName } from './camelCaseName';
 import { escapeAndCamelizeName } from './escapeName';
 import type { getModel } from './getModel';
 import { getModelProperties } from './getModelProperties';
@@ -86,6 +87,8 @@ export const getModelComposition = (
             properties,
         });
     }
+
+    composition.imports = composition.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return composition;
 };

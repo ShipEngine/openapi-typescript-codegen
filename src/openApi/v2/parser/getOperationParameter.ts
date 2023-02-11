@@ -3,6 +3,7 @@ import { getPattern } from '../../../utils/getPattern';
 import type { OpenApi } from '../interfaces/OpenApi';
 import type { OpenApiParameter } from '../interfaces/OpenApiParameter';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
+import { camelCaseName } from './camelCaseName';
 import { extendEnum } from './extendEnum';
 import { getEnum } from './getEnum';
 import { getModel } from './getModel';
@@ -132,6 +133,8 @@ export const getOperationParameter = (openApi: OpenApi, parameter: OpenApiParame
         operationParameter.default = getOperationParameterDefault(parameter, operationParameter);
         return operationParameter;
     }
+
+    operationParameter.imports = operationParameter.imports.map(x => camelCaseName(x, { pascalCase: true }));
 
     return operationParameter;
 };
